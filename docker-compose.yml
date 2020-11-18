@@ -1,0 +1,18 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    build: db/
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+
+  frontend:
+    build: frontend/
+    restart: always
+    ports:
+      - 2000:3001
+    depends_on:
+      - 'db'
